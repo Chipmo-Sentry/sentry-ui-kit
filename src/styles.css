@@ -1,0 +1,53 @@
+/* Chipmo Sentry — shared design tokens (Tailwind v4 @theme).
+ * Consumers: `import "@chipmo-sentry/ui-kit/styles.css";`
+ * Their Tailwind picks up these vars as new utility classes (bg-primary, etc.). */
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — calm slate base + a single high-contrast accent for alerts.
+   * Mongolian retail customers tend to use bright store lighting; the orange
+   * accent ("Chipmo orange") stays readable on white + dark surfaces alike. */
+  --color-primary: oklch(0.72 0.18 55);          /* #FF8A1F-ish */
+  --color-primary-foreground: oklch(0.99 0 0);
+
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.15 0.02 250);
+  --color-muted: oklch(0.96 0.005 250);
+  --color-muted-foreground: oklch(0.45 0.02 250);
+  --color-border: oklch(0.9 0.01 250);
+  --color-ring: oklch(0.72 0.18 55);
+
+  /* Alert level palette — semantic, used by Badge */
+  --color-level-ignore: oklch(0.65 0.02 250);
+  --color-level-log: oklch(0.62 0.13 220);
+  --color-level-notify: oklch(0.72 0.18 55);
+  --color-level-review: oklch(0.55 0.22 25);
+
+  /* Status states */
+  --color-success: oklch(0.65 0.18 145);
+  --color-warning: oklch(0.78 0.16 85);
+  --color-danger: oklch(0.55 0.22 25);
+
+  /* Typography — Inter for UI, JetBrains Mono for code/IDs */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --radius: 0.5rem;
+}
+
+/* Reset that respects Tailwind v4 conventions */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
