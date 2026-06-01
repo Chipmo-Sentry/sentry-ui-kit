@@ -1,0 +1,6 @@
+/* Pulls in the ui-kit design tokens + Tailwind. The @source lines make
+   Tailwind v4 scan both the component source and this showcase for classes. */
+@import "../src/styles.css";
+
+@source "../src/**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx,html}";
