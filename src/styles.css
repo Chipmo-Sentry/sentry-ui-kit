@@ -4,23 +4,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — calm slate base + a single high-contrast accent for alerts.
-   * Mongolian retail customers tend to use bright store lighting; the orange
-   * accent ("Chipmo orange") stays readable on white + dark surfaces alike. */
-  --color-primary: oklch(0.72 0.18 55);          /* #FF8A1F-ish */
-  --color-primary-foreground: oklch(0.99 0 0);
+  /* Enterprise palette — slate neutrals + a single cooler, high-contrast orange
+   * accent (#F97316). Tuned for B2B AI-platform trust: clean white cards on a
+   * #F8FAFC section base, deep slate (#0F172A) text. The orange stays readable
+   * on white + dark surfaces alike. */
+  --color-primary: #f97316;                       /* orange-500 */
+  --color-primary-foreground: #ffffff;
+  --color-primary-tint: #fff7ed;                  /* orange-50, for icon chips */
 
-  --color-background: oklch(1 0 0);
-  --color-foreground: oklch(0.15 0.02 250);
-  --color-muted: oklch(0.96 0.005 250);
-  --color-muted-foreground: oklch(0.45 0.02 250);
-  --color-border: oklch(0.9 0.01 250);
-  --color-ring: oklch(0.72 0.18 55);
+  --color-background: #ffffff;                    /* base / card surface */
+  --color-surface: #f8fafc;                       /* section background (slate-50) */
+  --color-foreground: #0f172a;                    /* slate-900, main text */
+  --color-muted: #f1f5f9;                          /* slate-100, hover/subtle fills */
+  --color-muted-foreground: #475569;              /* slate-600, secondary text */
+  --color-border: #e2e8f0;                         /* slate-200 */
+  --color-ring: #f97316;
 
   /* Alert level palette — semantic, used by Badge */
   --color-level-ignore: oklch(0.65 0.02 250);
   --color-level-log: oklch(0.62 0.13 220);
-  --color-level-notify: oklch(0.72 0.18 55);
+  --color-level-notify: #f97316;
   --color-level-review: oklch(0.55 0.22 25);
 
   /* Status states */
