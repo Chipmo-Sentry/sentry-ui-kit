@@ -36,6 +36,7 @@ export {
   DropdownTrigger,
 } from "./components/Dropdown";
 export { EmptyState, type EmptyStateProps } from "./components/EmptyState";
+export { ErrorState, type ErrorStateProps } from "./components/ErrorState";
 export { Input, type InputProps } from "./components/Input";
 export { Logo, type LogoProps } from "./components/Logo";
 export {
