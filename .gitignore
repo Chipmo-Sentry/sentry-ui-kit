@@ -18,4 +18,9 @@ coverage/
 # OS
 Thumbs.db
 
+# Env — never commit secrets
+.env
+.env.local
+.env.*.local
+
 showcase-dist
