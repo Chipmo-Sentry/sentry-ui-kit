@@ -37,6 +37,7 @@ export {
 } from "./components/Dropdown";
 export { EmptyState, type EmptyStateProps } from "./components/EmptyState";
 export { ErrorState, type ErrorStateProps } from "./components/ErrorState";
+export { Field, type FieldProps } from "./components/Field";
 export { Input, type InputProps } from "./components/Input";
 export { Logo, type LogoProps } from "./components/Logo";
 export {
@@ -49,6 +50,7 @@ export {
   ModalTitle,
   ModalTrigger,
 } from "./components/Modal";
+export { Select, type SelectProps } from "./components/Select";
 export { Spinner, type SpinnerProps } from "./components/Spinner";
 export {
   Table,
