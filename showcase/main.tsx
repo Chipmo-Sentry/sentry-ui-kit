@@ -254,6 +254,20 @@ function App() {
           />
         </Section>
 
+        {/* Animated ambient background */}
+        <Section title="Aurora background (.sentry-aurora)">
+          <div className="relative h-72 overflow-hidden rounded-[var(--radius)] border border-[var(--color-border)]">
+            <div className="sentry-aurora" aria-hidden="true" />
+            <div className="relative z-10 flex h-full flex-col items-center justify-center gap-3 text-center">
+              <Logo withWordmark className="h-9" />
+              <p className="max-w-xs text-sm text-[var(--color-muted-foreground)]">
+                Marketing + login дэлгэцэнд зориулсан хөдөлгөөнт дэвсгэр.
+              </p>
+              <Button>Demo үзэх</Button>
+            </div>
+          </div>
+        </Section>
+
         <footer className="flex items-center gap-2 pt-4 text-xs text-[var(--color-muted-foreground)]">
           <ShieldAlert className="h-3.5 w-3.5" />
           Chipmo Sentry design system · Apache 2.0
