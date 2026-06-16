@@ -4,27 +4,27 @@
 @import "tailwindcss";
 
 @theme {
-  /* Enterprise palette — slate neutrals + a single cooler, high-contrast orange
-   * accent (#F97316). Tuned for B2B AI-platform trust: clean white cards on a
-   * #F8FAFC section base, deep slate (#0F172A) text. The orange stays readable
-   * on white + dark surfaces alike. */
-  --color-primary: #f97316;                       /* orange-500 */
+  /* Enterprise dark palette — pure-black (тас хар) neutrals + a single deep
+   * royal-blue accent (#2563EB). Linear/Vercel-style dark surface: near-black
+   * #0A0A0A page + cards, elevation via subtle borders + shadow, near-white
+   * (#FAFAFA) text. The blue stays readable on the dark surface. */
+  --color-primary: #2563eb;                       /* blue-600 */
   --color-primary-foreground: #ffffff;
-  --color-primary-tint: #fff7ed;                  /* orange-50, for icon chips */
+  --color-primary-tint: #172554;                  /* blue-950, for icon chips */
 
-  --color-background: #ffffff;                    /* base / card surface */
-  --color-surface: #f8fafc;                       /* section background (slate-50) */
-  --color-foreground: #0f172a;                    /* slate-900, main text */
-  --color-muted: #f1f5f9;                          /* slate-100, hover/subtle fills */
-  --color-muted-foreground: #475569;              /* slate-600, secondary text */
-  --color-border: #e2e8f0;                         /* slate-200 */
-  --color-ring: #f97316;
+  --color-background: #0a0a0a;                    /* тас хар base / card surface */
+  --color-surface: #161616;                       /* elevated panel / section */
+  --color-foreground: #fafafa;                    /* near-white, main text */
+  --color-muted: #1f1f1f;                          /* hover/subtle fills, input bg */
+  --color-muted-foreground: #a1a1aa;              /* zinc-400, secondary text */
+  --color-border: #262626;                         /* neutral-800, subtle borders */
+  --color-ring: #2563eb;
 
   /* Alert level palette — semantic, used by Badge */
-  --color-level-ignore: oklch(0.65 0.02 250);
-  --color-level-log: oklch(0.62 0.13 220);
-  --color-level-notify: #f97316;
-  --color-level-review: oklch(0.55 0.22 25);
+  --color-level-ignore: oklch(0.7 0.02 250);
+  --color-level-log: oklch(0.7 0.13 220);
+  --color-level-notify: #2563eb;
+  --color-level-review: oklch(0.62 0.22 25);
 
   /* Status states */
   --color-success: oklch(0.65 0.18 145);
