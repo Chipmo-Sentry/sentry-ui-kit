@@ -13,7 +13,7 @@ export const Logo = React.forwardRef<SVGSVGElement, LogoProps>(
   ({ className, withWordmark = false, ...props }, ref) => (
     <svg
       ref={ref}
-      viewBox={withWordmark ? "0 0 160 32" : "0 0 32 32"}
+      viewBox={withWordmark ? "0 0 168 32" : "0 0 32 32"}
       xmlns="http://www.w3.org/2000/svg"
       className={cn("h-8 w-auto", className)}
       role="img"
