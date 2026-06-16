@@ -54,3 +54,79 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+/* ── Animated ambient background ─────────────────────────────────────────────
+ * Pure-CSS, GPU-friendly (transform/opacity only), reduced-motion aware.
+ * Usage: drop an absolute backdrop inside a position:relative parent and put
+ * content above it — NOT on dense dashboards (use solid surfaces there):
+ *
+ *   <main class="relative overflow-hidden bg-[var(--color-background)]">
+ *     <div class="sentry-aurora" aria-hidden="true"></div>
+ *     <div class="relative z-10"> …content… </div>
+ *   </main>
+ *
+ * Layers: тас хар base + faint vignetted grid (static) → drifting blue aurora
+ * (::before) → slow scan band (::after). */
+.sentry-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(ellipse 80% 70% at 50% 30%, transparent 45%, var(--color-background) 92%),
+    radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px;
+}
+.sentry-aurora::before,
+.sentry-aurora::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.sentry-aurora::before {
+  inset: -12%;
+  background:
+    radial-gradient(40% 50% at 20% 30%, rgba(37, 99, 235, 0.3), transparent 70%),
+    radial-gradient(35% 45% at 80% 20%, rgba(59, 130, 246, 0.24), transparent 70%),
+    radial-gradient(45% 55% at 60% 90%, rgba(23, 37, 84, 0.55), transparent 72%);
+  filter: blur(24px);
+  will-change: transform;
+  animation: sentry-aurora-drift 18s ease-in-out infinite alternate;
+}
+.sentry-aurora::after {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 22%;
+  background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  will-change: transform;
+  animation: sentry-aurora-scan 9s linear infinite;
+}
+@keyframes sentry-aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-3%, 4%, 0) scale(1.05);
+  }
+}
+@keyframes sentry-aurora-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(560%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sentry-aurora::before {
+    animation: none;
+  }
+  .sentry-aurora::after {
+    display: none;
+  }
+}
