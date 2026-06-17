@@ -1,100 +1,70 @@
 # sentry-ui-kit
 
-Shared design system for **Chipmo Sentry** — React 19 components + Tailwind v4 design tokens used by [sentry-landing](https://github.com/Chipmo-Sentry/sentry-landing), [sentry-frontend](https://github.com/Chipmo-Sentry/sentry-frontend), and [sentry-superadmin](https://github.com/Chipmo-Sentry/sentry-superadmin).
+The shared design system for **Chipmo Sentry** — React 19 components + Tailwind v4 design tokens consumed by
+[sentry-frontend](https://github.com/Chipmo-Sentry/sentry-frontend) and
+[sentry-superadmin](https://github.com/Chipmo-Sentry/sentry-superadmin) (and mirrored by
+[sentry-landing](https://github.com/Chipmo-Sentry/sentry-landing)). It is the single source of brand truth:
+one orange (`#f97316`) + slate palette, Inter/JetBrains-Mono type, and the alert-level colour semantics that
+appear everywhere from the live overlay to email.
 
-React 19 · Vite library mode · Tailwind CSS v4 (CSS-first `@theme`) · Radix UI primitives · Lucide icons · Apache 2.0
+Vite 6 (library mode) · React 19 · Tailwind v4 (`@theme`) · Radix UI · TypeScript · Apache-2.0
+
+Package: `@chipmo-sentry/ui-kit` · published to **GitHub Packages** (restricted).
 
 ---
 
-## Install (consumer-side)
+## Components
 
-This package is published to **GitHub Packages**, not the public npm registry. Each consumer repo needs an `.npmrc`:
+13 components (plus a `cn` class-merge helper), all exported from the `src/index.ts` barrel:
 
-```ini
-# .npmrc in the consumer repo
-@chipmo-sentry:registry=https://npm.pkg.github.com
-```
+| Component | Parts |
+|---|---|
+| **Button** | variants `primary / secondary / ghost / danger / outline`; sizes `sm / md / lg / icon` |
+| **Card** | Card · CardHeader · CardTitle · CardDescription · CardContent · CardFooter |
+| **Input** | labelled text input |
+| **Logo** | mark + optional wordmark |
+| **Spinner** | `sm / md / lg` |
+| **Badge** | alert-level + status variants |
+| **Avatar** | Avatar · AvatarImage · AvatarFallback (Radix) |
+| **Modal** | Radix Dialog — Trigger · Content · Header · Title · Description · Footer · Close |
+| **Dropdown** | Radix Dropdown — Trigger · Content · Item · Checkbox/Radio items · Group · Label · Separator · Sub · Portal |
+| **Toast** | Radix Toast — Provider · Viewport · Title · Description · Close |
+| **EmptyState** | icon + title + description + action |
+| **Table** | Table · Header · Body · Row · Head · Cell · Caption · Footer |
 
-Then:
+## Design tokens (`src/styles.css`)
 
-```bash
-npm install @chipmo-sentry/ui-kit
-```
+Tailwind v4 `@theme` block — the brand contract every app inherits:
 
-CI auth uses `NODE_AUTH_TOKEN` (read-only PAT for downloads).
+- **Primary:** `#f97316` (orange-500) + `#fff7ed` tint
+- **Neutrals:** slate ramp (bg `#ffffff`, surface `#f8fafc`, text `#0f172a`, border `#e2e8f0`, …)
+- **Alert levels:** `ignore` (slate) · `log` (blue) · `notify` (orange) · `review` (red) — the colours that
+  drive 🟢🟡🔴 risk overlays and alert badges
+- **Status:** success / warning / danger · **Fonts:** Inter (sans), JetBrains Mono (mono) · radius `0.5rem`
 
 ---
 
 ## Usage
 
+```bash
+# .npmrc — point the scope at GitHub Packages
+@chipmo-sentry:registry=https://npm.pkg.github.com
+
+npm install @chipmo-sentry/ui-kit
+```
+
 ```tsx
-// 1. Import the stylesheet once at the app's root
-import "@chipmo-sentry/ui-kit/styles.css";
+import { Button, Card, Badge } from "@chipmo-sentry/ui-kit";
+import "@chipmo-sentry/ui-kit/styles.css";   // once, at app root
 
-// 2. Use components
-import { Button, Card, CardHeader, CardTitle, Input, Logo, Spinner } from "@chipmo-sentry/ui-kit";
-
-export function Login() {
-  return (
-    <Card className="mx-auto mt-20 w-96">
-      <CardHeader>
-        <Logo withWordmark />
-        <CardTitle>Нэвтрэх</CardTitle>
-      </CardHeader>
-      <form className="space-y-3 p-6 pt-0">
-        <Input type="email" placeholder="email@chipmo.mn" />
-        <Input type="password" placeholder="••••••••" />
-        <Button className="w-full">Нэвтрэх</Button>
-      </form>
-    </Card>
-  );
-}
+<Card>
+  <Button variant="primary">Хадгалах</Button>
+  <Badge level="notify">Сэрэмжлүүлэг</Badge>
+</Card>
 ```
 
-The CSS file provides Tailwind v4 `@theme` design tokens (brand colors, typography, radius). Consumers can reference them in their own Tailwind utilities — `bg-primary`, `text-foreground`, `bg-level-notify`, etc.
-
----
-
-## Components (M1 — 5 of 12)
-
-| Component | Variants / props |
-|---|---|
-| `Button` | variant: `primary`/`secondary`/`ghost`/`danger`/`outline`; size: `sm`/`md`/`lg`/`icon`; `asChild` |
-| `Card` + `CardHeader` / `CardTitle` / `CardDescription` / `CardContent` / `CardFooter` | composable card |
-| `Input` | standard HTML props |
-| `Logo` | `withWordmark` boolean |
-| `Spinner` | size: `sm`/`md`/`lg`; `label` (a11y) |
-
-Planned for Session 2 (M2 milestone): Badge, Avatar, Modal (Radix Dialog), Dropdown, Toast, EmptyState, Table.
-
----
-
-## Design tokens (excerpt)
-
-CSS custom properties exposed via Tailwind v4 `@theme`:
-
-```css
---color-primary           /* Chipmo orange */
---color-primary-foreground
---color-background
---color-foreground
---color-muted
---color-muted-foreground
---color-border
---color-ring
-
-/* Alert level palette — semantic */
---color-level-ignore
---color-level-log
---color-level-notify
---color-level-review
-
---color-success / --color-warning / --color-danger
-
---font-sans   /* Inter */
---font-mono   /* JetBrains Mono */
---radius      /* 0.5rem */
-```
+During local development the web apps depend on this package as `file:../sentry-ui-kit`, so build it first:
+`npm install && npm run build`.
 
 ---
 
@@ -102,21 +72,39 @@ CSS custom properties exposed via Tailwind v4 `@theme`:
 
 ```bash
 npm install
+npm run build          # Vite library build → dist/{index.js, index.d.ts, styles.css}
+npm run dev            # build --watch
+npm run showcase:dev   # component playground (Vite dev server)
 npm run typecheck      # tsc --noEmit
-npm run build          # vite build → dist/{index.js,index.d.ts,styles.css}
-npm run dev            # vite build --watch
+npm run lint           # ESLint (max-warnings 0)
 ```
 
-The build emits **ESM-only**, with externalized React and Radix peers so consumers bring their own copies.
+```
+src/
+├── components/   — one file per component
+├── lib/cn.ts     — clsx + tailwind-merge
+├── index.ts      — barrel export (components + cn)
+└── styles.css    — Tailwind v4 @theme tokens
+showcase/         — deployable component gallery
+```
+
+Build outputs are ESM-only; React, lucide-react, and all `@radix-ui/*` packages are externalised as peers,
+so consumers control their versions.
 
 ---
 
-## Publish
+## Releasing
 
-Bump version, then push a git tag matching `v<x.y.z>` — GitHub Actions builds + publishes to `@chipmo-sentry` on GitHub Packages (workflow TBD next session).
+- **CI** (`.github/workflows`) — typecheck + build asserts on every push/PR.
+- **Publish on tag** — pushing a `v*` tag publishes the package to GitHub Packages.
+- **Showcase deploy** — `railway.toml` + Dockerfile deploy the showcase gallery to Railway
+  (`sentry-ui-kit-production.up.railway.app`) on push.
 
 ---
 
 ## Related repos
 
-Platform overview: [Sentry-v.3 README](../README.md) (local workspace)
+- [sentry-frontend](https://github.com/Chipmo-Sentry/sentry-frontend) · [sentry-superadmin](https://github.com/Chipmo-Sentry/sentry-superadmin) — consumers
+- [sentry-landing](https://github.com/Chipmo-Sentry/sentry-landing) — mirrors the tokens (no React dep)
+
+Platform overview: [Sentry-v.3 README](../README.md).
