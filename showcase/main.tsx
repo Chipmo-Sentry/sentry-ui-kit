@@ -84,7 +84,7 @@ function App() {
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-6 py-5">
           <Logo className="h-8 w-8" />
           <div>
-            <h1 className="text-lg font-semibold">Chipmo Sentry — UI Kit</h1>
+            <h1 className="text-lg font-semibold">Sentry — UI Kit</h1>
             <p className="text-xs text-[var(--color-muted-foreground)]">
               @chipmo-sentry/ui-kit · 12 component · Tailwind v4 + Radix
             </p>
@@ -270,7 +270,7 @@ function App() {
 
         <footer className="flex items-center gap-2 pt-4 text-xs text-[var(--color-muted-foreground)]">
           <ShieldAlert className="h-3.5 w-3.5" />
-          Chipmo Sentry design system · Apache 2.0
+          Sentry design system · Apache 2.0
         </footer>
       </main>
     </div>

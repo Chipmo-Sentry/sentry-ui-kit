@@ -3,45 +3,42 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 
 export interface LogoProps extends React.SVGAttributes<SVGSVGElement> {
-  /** Show the wordmark next to the glyph. */
+  /** Show the "Sentry" wordmark next to the glyph. */
   withWordmark?: boolean;
 }
 
-/** Chipmo Sentry logo — eye/camera glyph in brand primary.
- * The geometry is intentionally simple so it renders well at favicon size. */
+/** Sentry logo — the Chipmo "C" mark (concentric aperture arcs + wedge).
+ * Drawn in `currentColor` so it inherits the surrounding text color (white on
+ * the dark app shell). Source: Chipmo brand ICON.svg, normalized to a 32-unit
+ * box. Renders cleanly down to favicon size. */
 export const Logo = React.forwardRef<SVGSVGElement, LogoProps>(
   ({ className, withWordmark = false, ...props }, ref) => (
     <svg
       ref={ref}
-      viewBox={withWordmark ? "0 0 160 32" : "0 0 32 32"}
+      viewBox={withWordmark ? "0 0 168 32" : "0 0 32 32"}
       xmlns="http://www.w3.org/2000/svg"
       className={cn("h-8 w-auto", className)}
       role="img"
-      aria-label="Chipmo Sentry"
+      aria-label="Sentry"
       {...props}
     >
-      {/* Glyph: outer lens ring + inner aperture */}
-      <circle
-        cx="16"
-        cy="16"
-        r="14"
-        fill="none"
-        stroke="var(--color-primary, currentColor)"
-        strokeWidth="2.5"
-      />
-      <circle cx="16" cy="16" r="5" fill="var(--color-primary, currentColor)" />
-      <circle cx="20" cy="11" r="1.5" fill="var(--color-background, white)" />
+      {/* Chipmo "C" mark — 1024×1024 source scaled into a 28-unit box (2px pad) */}
+      <g transform="translate(2 2) scale(0.02734)" fill="currentColor">
+        <path d="M793.3,846l52.84,52.88C756.1,977.08,639.26,1024,512,1024S267.9,977.08,177.86,898.89c-19.35-15.64-36.46-33.52-52.84-52.14C46.88,756.64,0,639.72,0,512.37A509.16,509.16,0,0,1,125,177.25c16.38-18.62,33.49-36.5,52.84-52.14C267.9,46.92,384.74,0,512,0S756.1,46.92,846.14,125.11L793.3,178a434,434,0,0,0-562.6,0c-19.35,15.64-37.21,32.77-52.84,52.13-64.74,76-103.44,174.27-103.44,282.25A432.3,432.3,0,0,0,177.86,793.88c15.63,19.36,33.49,36.49,52.84,52.13a434,434,0,0,0,562.6,0Z" />
+        <path d="M1024,512.37c0,127.35-46.88,244.27-125,334.38l-52.84-53.61L787.35,734.3l-53.58-53.62L674.23,621.1A198.37,198.37,0,0,1,621.39,674c-31.25,21.6-68.46,33.51-109.39,33.51S433.86,695.58,402.61,674c-20.1-14.15-38.7-32-52.1-52.88C328.93,589.82,317,552.59,317,512.37c0-41,11.91-78.19,33.49-109.47,13.4-20.85,32-38.73,52.1-52.88,31.25-20.85,68.46-33.51,109.39-33.51S590.14,329.17,621.39,350a198.37,198.37,0,0,1,52.84,52.88l59.54-59.58L786.6,289.7l59.54-58.84L899,177.25A509.16,509.16,0,0,1,1024,512.37Z" />
+        <path d="M680.93,733.55l53.58,53.63a353.07,353.07,0,0,1-445,0,388.25,388.25,0,0,1-52.84-52.13,356.68,356.68,0,0,1-78.14-222.68A355.18,355.18,0,0,1,290.23,236.82c60.28-49.89,137.68-78.94,221.77-78.94a352.36,352.36,0,0,1,222.51,78.94l-53.58,53.63a274.64,274.64,0,0,0-337.86,0,234.06,234.06,0,0,0-52.84,52.12c-35.72,47.67-57.3,106.5-57.3,169.8a279,279,0,0,0,57.3,169.06,234.06,234.06,0,0,0,52.84,52.12,274.64,274.64,0,0,0,337.86,0Z" />
+      </g>
 
       {withWordmark ? (
         <text
           x="40"
-          y="22"
+          y="23"
           fontFamily="var(--font-sans, system-ui)"
-          fontSize="18"
-          fontWeight="600"
-          fill="var(--color-foreground, currentColor)"
+          fontSize="19"
+          fontWeight="700"
+          fill="currentColor"
         >
-          Chipmo Sentry
+          Sentry
         </text>
       ) : null}
     </svg>
