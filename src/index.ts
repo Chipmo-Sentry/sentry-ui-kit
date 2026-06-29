@@ -74,3 +74,11 @@ export {
 
 // === Utilities ===
 export { cn } from "./lib/cn";
+export {
+  type RiskBand,
+  RISK_COLORS,
+  RISK_HIGH_MIN,
+  RISK_MEDIUM_MIN,
+  riskBand,
+  riskColor,
+} from "./lib/risk";
